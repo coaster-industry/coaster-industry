@@ -34,12 +34,14 @@
             <li>
                 <a href="#">Support</a>
             </li>
+            <li>
+                <a href="">Help</a>
+            </li>
         </ul>
     </nav>
 
     <!-- Buttons to filter the different maker clusters -->
     <nav id="filter-group" class="filter-group">
-        <h4>Filtering markers</h4>
     </nav>
 
     <script>
@@ -109,10 +111,21 @@
                         "coordinates": [4.6150698,48.2629668]
                     },
                     "links": []
+                },
+                {
+                    "category": "park",
+                    "name": "Phantasialand",
+                    "brief": "World class Theme Park which fits heavily themed attractions in a limited area.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [6.8816363,50.7987028]
+                    },
+                    "links": []
                 }
             ]
         }
-        
+
         // load map
         mapboxgl.accessToken = 'pk.eyJ1IjoibGlvanVuMjIiLCJhIjoiY2s5Nzg2eXF5MGx5bTNncGNmNDZhZmE4dyJ9.sVCRIljCrOv1r3ihRxeANQ';
         var map = new mapboxgl.Map({
@@ -190,10 +203,12 @@
                         var geojson = 
                         {
                             'type': 'Feature',
-                            'geometry': {
-                                'type': 'LineString',
+                            'properties' : {
                                 "target": link.target,
                                 "brief": link.brief,
+                            },
+                            'geometry': {
+                                'type': 'LineString',
                                 'coordinates': [
                                     marker.geometry.coordinates,
                                     link.coordinates
@@ -220,8 +235,8 @@
                             'type': 'line',
                             'source': linkId, 
                             'paint': {
-                                'line-color': '#8d8d8d',
-                                'line-width': 6
+                                'line-color': '#000',
+                                'line-width': 4.5
                             }
                         });
 
@@ -251,7 +266,7 @@
                             var popup = new mapboxgl.Popup({ closeOnClick: false })
                                 .setLngLat([x, y])
                                 .setHTML(
-                                    "<p>" + line.brief + "</p><p>[<a class=\"source-link\" href=\"" + "#" + "\">source<a>]</p>"
+                                    "<p>" + line.properties.brief + "</p><p>[<a class=\"source-link\" href=\"" + "#" + "\">source<a>]</p>"
                                 )
                                 .addTo(map);
                             popup.addClassName(popupClass)

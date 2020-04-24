@@ -84,9 +84,9 @@ h4 {
 
 .marker {
     background-size: cover;
-    border: 1px solid black;
-    width: 30px;
-    height: 30px;
+    border: 2px solid black;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     cursor: pointer;
 }
