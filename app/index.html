@@ -82,10 +82,49 @@
                         "type": "Point",
                         "coordinates" : [6.947611,46.263599]
                     },
+                    "links": [
+                        {
+                            "target": "Europapark",
+                            "brief": "2001 B&M build the Silver Star at Europapark.",
+                            "coordinates": [7.7219027,48.2660401]
+                        },
+                        {
+                            "target": "Phantasialand",
+                            "brief": "2006 B&M build the inverted coaster Black Mamba.",
+                            "coordinates": [6.8816363,50.7987028]
+                        },
+                        {
+                            "target": "Parc Astérix",
+                            "brief": "2012 B&M delivered the floating airtime machine & inverted coaster Oziris.",
+                            "coordinates": [2.5711252,49.1341154]
+                        }
+                    ]
+                },
+                {
+                    "category": "constructor",
+                    "name": "Gerstlauer Amusement Rides GmbH",
+                    "brief": "German quality rides with increasing popular coaster models.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates" : [10.449584,48.3102941]
+                    },
+                    "links": []
+                },
+                {
+                    "category": "constructor",
+                    "name": "Intamin Amusement Rides Int. Corp. Est.",
+                    "brief": "World known record breaking coaster (and more) manufactor.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates" : [9.5089202,47.1594148]
+                    },
                     "links": []
                 }
             ]
         }
+
         var parks_geojson = 
         {
             "type": "FeatureCollection",
@@ -122,9 +161,32 @@
                         "coordinates": [6.8816363,50.7987028]
                     },
                     "links": []
+                },
+                {
+                    "category": "park",
+                    "name": "Holiday Park",
+                    "brief": "A little park with an immensely appreciated coaster : expedition Ge Force.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [8.2952151,49.3186504]
+                    },
+                    "links": []
+                },
+                {
+                    "category": "park",
+                    "name": "Parc Astérix",
+                    "brief": "Leading French theme park about the famous Asterix & Obelix characters.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [2.5711252,49.1341154]
+                    },
+                    "links": []
                 }
             ]
         }
+
 
         // load map
         mapboxgl.accessToken = 'pk.eyJ1IjoibGlvanVuMjIiLCJhIjoiY2s5Nzg2eXF5MGx5bTNncGNmNDZhZmE4dyJ9.sVCRIljCrOv1r3ihRxeANQ';
@@ -147,13 +209,15 @@
             'id' : 'constructors',
             'name' : 'Constructors',
             'class' : 'constructors-div',
-            'data' : constructors_geojson
+            'color' : '#0f62fe',
+            'data' : constructors_geojson,
         }
         var parkLayer = 
         {
             'id' : 'parks',
             'name' : 'Theme Parks',
             'class' : 'parks-div',
+            'color' : '#da1e28',
             'data' : parks_geojson
         } 
 
@@ -236,7 +300,8 @@
                             'source': linkId, 
                             'paint': {
                                 'line-color': '#000',
-                                'line-width': 4.5
+                                'line-width': 4.5,
+                                'line-opacity': 0.5
                             }
                         });
 
@@ -290,6 +355,10 @@
                 label.setAttribute('for', layer.id + "-id");
                 label.textContent = layer.name;
                 li.appendChild(label);
+
+                var dot = document.createElement('span');
+                dot.className = layer.id + "-dot";
+                li.appendChild(dot)
 
                 filterGroup.appendChild(li);
 

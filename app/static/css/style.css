@@ -56,7 +56,7 @@ li {
     right: 10px;
     z-index: 1;
     border-radius: 2px;
-    width: 150px;
+    width: 170px;
     color: #fff;
     background-color: #000d2c;
     box-shadow: 2px 2px 3px #000;
@@ -73,7 +73,9 @@ li {
     padding-right: 0px;
 }
 .filter-group li:hover {
-    border: 2px solid #fff;
+    cursor: pointer;
+    background-color: #fff;
+    color: #000d2c;
 }
 h4 {
     font-weight: 600;
@@ -93,11 +95,30 @@ h4 {
 .constructors-div {
     background-color: #0f62fe;
 }
+.constructors-dot {
+    height: 17px;
+    width: 17px;
+    background-color: #0f62fe;
+    border-radius: 50%;
+    border: 1px solid #000;
+    display: inline-block;
+    margin-left: 8px;
+}
 .constructors-div:hover {
     background-color: #0f32fe;
 }
 .parks-div {
     background-color: #da1e28;
+}
+.parks-dot {
+    height: 17px;
+    width: 17px;
+    background-color: #da1e28;
+    border-radius: 50%;
+    border: 1px solid #000;
+    display: inline-block;
+    margin-left: 8px;
+
 }
 .parks-div:hover {
     background-color: #fa1e28;
