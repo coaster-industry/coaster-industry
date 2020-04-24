@@ -1,35 +1,87 @@
 body { 
     margin:0; padding:0; 
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 #map { 
     position: absolute; top: 0; bottom:0; width:100%; 
 }
-.filter-group {
-    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+li {
+    list-style-type: none;
+}
+
+
+
+.website-nav {
     position: absolute;
-    height: 200px;
-    padding: 12px;
-    top: 10px;
+    height: 50px;
+    width: 100%;
+    left: 0px;
+    background-color: #000d2c;
+    /*padding: 10px;*/
+    color: #fff;
+}
+.website-nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #fff;
+    height: 100%;
+    padding: 15px;
+    width: 75px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 0px;
+}
+.website-nav a:hover {
+    color: #000d2c;
+    background-color: #fff
+}
+.website-nav li {
+    display: inline-block;
+    height: 100%;
+}
+.website-nav ul {
+    height: 100%;
+}
+
+
+
+.filter-group input[type=checkbox] {
+    border-radius: 0px;
+}
+.filter-group {
+    position: absolute;
+    padding: 10px;
+    padding-bottom: 30px;
+    top: 80px;
     right: 10px;
     z-index: 1;
-    border-radius: 3px;
+    border-radius: 2px;
     width: 150px;
     color: #fff;
-    background-color: #002975;
+    background-color: #000d2c;
     box-shadow: 2px 2px 3px #000;
+    opacity: 0.8;
     border: 3px solid #000;
 }
-.filter-group input {
-    font-weight: 300;
-    font-size: 12px;
-}
+.filter-group:hover {
+    opacity: 1;
+} 
 .filter-group li {
-    list-style-type: none;
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+    padding-right: 0px;
+}
+.filter-group li:hover {
+    border: 2px solid #fff;
 }
 h4 {
     font-weight: 600;
     font-size: 18px;
 }
+
+
+
 .marker {
     background-size: cover;
     border: 1px solid black;

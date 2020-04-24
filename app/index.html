@@ -16,6 +16,27 @@
     <!-- Displaying the map base -->
     <div id='map'></div>
 
+    <!-- Website navigation bar -->
+    <nav id="website-nav" class="website-nav">
+        <ul>
+            <li>
+                <img class="nav-logo" src="" />
+            </li>
+            <li>
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="#">Explore</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Support</a>
+            </li>
+        </ul>
+    </nav>
+
     <!-- Buttons to filter the different maker clusters -->
     <nav id="filter-group" class="filter-group">
         <h4>Filtering markers</h4>
@@ -245,11 +266,13 @@
                 var li = document.createElement('li');
                 var input = document.createElement('input');
                 input.type = 'checkbox';
+                input.className = "checkbox-input";
                 input.checked = true;
+                input.id = layer.id + "-id";
                 li.appendChild(input)
             
                 var label = document.createElement('label');
-                label.setAttribute('for', layer.id);
+                label.setAttribute('for', layer.id + "-id");
                 label.textContent = layer.name;
                 li.appendChild(label);
 
