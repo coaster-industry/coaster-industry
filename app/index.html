@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset=utf-8 />
+    <title>The Roller Coaster Industry</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="icon" type="image/png" href="static/img/coaster_favicon.png" sizes="32x32">
+    <link href='static/css/style.css' rel='stylesheet' />
+
+</head>
+<body>
+
+    <!-- Displaying the map base -->
+    <div id='map'></div>
+
+    <!-- Buttons to filter the different maker clusters -->
+    <nav id="filter-group" class="filter-group"></nav>
+
+    <script>
+
+        // Some data
+        var constructors_geojson = 
+        {
+            "type": "FeatureCollection",
+            "features": [ 
+                {
+                    "category": "constructor",
+                    "name": "MACK Rides GmbH & Co KG",
+                    "brief": "Leading german coaster manufacter.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates" : [7.9463622, 48.0882998]
+                    },
+                    "links": [
+                        {
+                            "target": "Europapark",
+                            "brief": "MACK Rides delivered many attraction to Europapark, since both are owned by the MACK family.",
+                            "coordinates": [7.7219027,48.2660401]
+                        },
+                        {
+                            "target": "Nigloland",
+                            "brief": "MACK Rides devlivered almost every big attraction & coasters to Nigloland.",
+                            "coordinates": [4.6150698,48.2629668]
+                        },
+                    ]
+                },
+                {
+                    "category": "constructor",
+                    "name": "Bolliger & Mabillard SA",
+                    "brief": "Known for there high quality coasters.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates" : [6.947611,46.263599]
+                    },
+                    "links": []
+                }
+            ]
+        }
+        var parks_geojson = 
+        {
+            "type": "FeatureCollection",
+            "features": [ 
+                {
+                    "category": "park",
+                    "name": "Europapark",
+                    "brief": "A german heavy weight, multiple time the best park in the world.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [7.7219027,48.2660401]
+                    },
+                    "links": []
+                },
+                {
+                    "category": "park",
+                    "name": "Nigloland",
+                    "brief": "Idyllic French theme park.",
+                    "uri": "#",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [4.6150698,48.2629668]
+                    },
+                    "links": []
+                }
+            ]
+        }
+        
+        // load map
+        mapboxgl.accessToken = 'pk.eyJ1IjoibGlvanVuMjIiLCJhIjoiY2s5Nzg2eXF5MGx5bTNncGNmNDZhZmE4dyJ9.sVCRIljCrOv1r3ihRxeANQ';
+        var map = new mapboxgl.Map({
+            container : 'map',
+            style : 'mapbox://styles/mapbox/streets-v11',
+            center : [12.6425595, 47.9732064],
+            zoom : 4
+        })
+       
+        /* 
+        Creating the layers : one layer per marker category. This will allow marker
+        filtering. So we have :
+            - constructor : represents the coaster/attraction constructors
+            - park : represents the theme parks
+                ...
+        */
+        var constructorLayer = 
+        {
+            'id' : 'constructors',
+            'name' : 'Constructors',
+            'class' : 'constructors-div',
+            'data' : constructors_geojson
+        }
+        var parkLayer = 
+        {
+            'id' : 'parks',
+            'name' : 'Theme Parks',
+            'class' : 'parks-div',
+            'data' : parks_geojson
+        } 
+
+        var layers = [constructorLayer, parkLayer]
+        var filterGroup = document.getElementById('filter-group');
+
+        // Init the map elements when loading the map
+        map.on('load', function() {
+            
+            // Initializing each layer described above
+            layers.forEach(function(layer) {
+
+                // Creating the markers of this layer
+                layer.data.features.forEach(function(marker) {
+                    
+                    // Creating a popup that will be attached to the marker
+                    var popup = new mapboxgl.Popup({
+                        closeButton : true,
+                        anchor : 'bottom-left',
+                        maxWidth : '240px' // default is 240px
+                    })
+                        .setLngLat(marker.geometry.coordinates)
+                        .setHTML(
+                            "<h3>" + marker.name + "</h3>" +
+                            "<p>" + marker.brief + "</p>" +
+                            "<a href=" + marker.uri + ">more... </a>"
+                        )
+                        .addTo(map);
+    
+                    // Init the marker object
+                    var el = document.createElement('div');
+                    el.className = layer.class + " marker";
+                    new mapboxgl.Marker(el)
+                        .setLngLat(marker.geometry.coordinates)
+                        .setPopup(popup)
+                        .addTo(map);
+
+                    // Create a var containing all links as a geojson lines collection
+                    var lineSource = 
+                    { 
+                        'type': 'FeatureCollection',
+                        'features': []
+                    };
+                    
+                    marker.links.forEach(function(link) {
+                        var geojson = 
+                        {
+                            'type': 'Feature',
+                            'geometry': {
+                                'type': 'LineString',
+                                "target": link.target,
+                                "brief": link.brief,
+                                'coordinates': [
+                                    marker.geometry.coordinates,
+                                    link.coordinates
+                                ]
+                            }
+                        }
+                        lineSource.features.push(geojson)
+
+                    });
+                    
+                    console.debug(lineSource);
+                
+                    if (lineSource.features.length > 0) {
+
+                        // the source id is the first word of the marker name, concat with "-link".
+                        var linkId = marker.name.split(" ")[0] + "-link";
+                        map.addSource(linkId, {
+                            'type': 'geojson',
+                            'data': lineSource
+                        })
+
+                        map.addLayer({
+                            'id': linkId,
+                            'type': 'line',
+                            'source': linkId, 
+                            'paint': {
+                                'line-color': '#8d8d8d',
+                                'line-width': 6
+                            }
+                        });
+
+                        map.setLayoutProperty(linkId, 'visibility', 'none');
+
+                        console.debug("there are links");
+
+                        el.addEventListener("click", function(e) {
+                            var visibility = map.getLayoutProperty(linkId, 'visibility');
+                            if (visibility === 'visible') {
+                                map.setLayoutProperty(linkId, 'visibility', 'none');
+                            }
+                            else {
+                                map.setLayoutProperty(linkId, 'visibility', 'visible');
+                            }
+                        });
+
+                        // Displaying popups when line is clicked
+                        map.on('click', linkId, function(e) {
+                            
+                            var line = e.features[0];
+                            console.debug(line);
+                            // we calculate the middle between the points where the popup will be displayed
+                            var x = (line.geometry.coordinates[0][0] + line.geometry.coordinates[1][0]) / 2;
+                            var y = (line.geometry.coordinates[0][1] + line.geometry.coordinates[1][1]) / 2;
+                            var popupClass = marker.name.split(" ")[0] + "-popup";
+                            var popup = new mapboxgl.Popup({ closeOnClick: false })
+                                .setLngLat([x, y])
+                                .setHTML(
+                                    "<p>" + line.brief + "</p><p>[<a class=\"source-link\" href=\"" + "#" + "\">source<a>]</p>"
+                                )
+                                .addTo(map);
+                            popup.addClassName(popupClass)
+                        });
+
+                    }
+
+                });
+
+                
+                // Adding element to the filter list associated with the current layer
+                var input = document.createElement('input');
+                input.type = 'checkbox';
+                input.checked = true;
+                filterGroup.appendChild(input);
+            
+                var label = document.createElement('label');
+                label.setAttribute('for', layer.id);
+                label.textContent = layer.name;
+                filterGroup.appendChild(label);
+
+                
+                // Enable interaction with the checkbox input
+                input.addEventListener('change', function(e) {
+                    var markers = document.getElementsByClassName(layer.class);
+                    
+                    for (var i = 0, len = markers.length; i < len; i++) {
+                        var visibility = markers[i].style.display;
+                        if (visibility == 'none') {
+                            markers[i].style.display = "block";
+                        }
+                        else {
+                            markers[i].style.display = "none";
+                        }
+                    }
+                });
+
+            }); // layer collection foreach
+            
+        }); // map on load
+
+    </script>
+
+</body>
+</html>
+

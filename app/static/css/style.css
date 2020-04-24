@@ -1,0 +1,41 @@
+body { 
+    margin:0; padding:0; 
+}
+#map { 
+    position: absolute; top: 0; bottom:0; width:100%; 
+}
+.filter-group {
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    border-radius: 3px;
+    width: 120px;
+    color: #fff;
+    background-color: black;
+}
+.marker {
+    background-size: cover;
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.constructors-div {
+    background-color: #0f62fe;
+}
+.constructors-div:hover {
+    background-color: #0f32fe;
+}
+.parks-div {
+    background-color: #da1e28;
+}
+.parks-div:hover {
+    background-color: #fa1e28;
+}
+.link-popup {
+    border: 2px solid #000;
+}
