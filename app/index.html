@@ -17,7 +17,9 @@
     <div id='map'></div>
 
     <!-- Buttons to filter the different maker clusters -->
-    <nav id="filter-group" class="filter-group"></nav>
+    <nav id="filter-group" class="filter-group">
+        <h4>Filtering markers</h4>
+    </nav>
 
     <script>
 
@@ -150,6 +152,7 @@
                     // Init the marker object
                     var el = document.createElement('div');
                     el.className = layer.class + " marker";
+                    el.title = marker.name;
                     new mapboxgl.Marker(el)
                         .setLngLat(marker.geometry.coordinates)
                         .setPopup(popup)
@@ -239,15 +242,18 @@
 
                 
                 // Adding element to the filter list associated with the current layer
+                var li = document.createElement('li');
                 var input = document.createElement('input');
                 input.type = 'checkbox';
                 input.checked = true;
-                filterGroup.appendChild(input);
+                li.appendChild(input)
             
                 var label = document.createElement('label');
                 label.setAttribute('for', layer.id);
                 label.textContent = layer.name;
-                filterGroup.appendChild(label);
+                li.appendChild(label);
+
+                filterGroup.appendChild(li);
 
                 
                 // Enable interaction with the checkbox input
