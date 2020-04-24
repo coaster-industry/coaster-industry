@@ -291,7 +291,7 @@
                         var linkId = marker.name.split(" ")[0] + "-link";
                         map.addSource(linkId, {
                             'type': 'geojson',
-                            'data': lineSource
+                            'data': lineSource,
                         })
 
                         map.addLayer({
@@ -318,6 +318,12 @@
                                 map.setLayoutProperty(linkId, 'visibility', 'visible');
                             }
                         });
+                        el.addEventListener("mouseover", function(e) {
+                            map.setPaintProperty(linkId, 'line-width', 7);
+                        });
+                        el.addEventListener("mouseleave", function(e) {
+                            map.setPaintProperty(linkId, 'line-width', 4.5);
+                        });
 
                         // Displaying popups when line is clicked
                         map.on('click', linkId, function(e) {
@@ -328,7 +334,7 @@
                             var x = (line.geometry.coordinates[0][0] + line.geometry.coordinates[1][0]) / 2;
                             var y = (line.geometry.coordinates[0][1] + line.geometry.coordinates[1][1]) / 2;
                             var popupClass = marker.name.split(" ")[0] + "-popup";
-                            var popup = new mapboxgl.Popup({ closeOnClick: false })
+                            var popup = new mapboxgl.Popup({ closeOnClick: true })
                                 .setLngLat([x, y])
                                 .setHTML(
                                     "<p>" + line.properties.brief + "</p><p>[<a class=\"source-link\" href=\"" + "#" + "\">source<a>]</p>"
