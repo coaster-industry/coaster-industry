@@ -319,10 +319,14 @@
                             }
                         });
                         el.addEventListener("mouseover", function(e) {
-                            map.setPaintProperty(linkId, 'line-width', 7);
+                            map.setPaintProperty(linkId, 'line-width', 6);
+                            map.setPaintProperty(linkId, 'line-opacity', 0.7);
+
                         });
                         el.addEventListener("mouseleave", function(e) {
                             map.setPaintProperty(linkId, 'line-width', 4.5);
+                            map.setPaintProperty(linkId, 'line-opacity', 0.5);
+
                         });
 
                         // Displaying popups when line is clicked
