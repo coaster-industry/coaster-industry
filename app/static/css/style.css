@@ -27,9 +27,14 @@ li {
     height: 100%;
     padding: 15px;
     width: 75px;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
     margin-top: 0px;
+}
+.nav-logo {
+    height: 100%;
+    position: absolute;
+    margin-left: 30px;
 }
 .website-nav a:hover {
     color: #000d2c;
@@ -41,6 +46,12 @@ li {
 }
 .website-nav ul {
     height: 100%;
+    display: inline-block;
+    margin-left: 50px;
+}
+.account-nav {
+    margin-right: 30px;
+    float: right;
 }
 
 
