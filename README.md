@@ -1,7 +1,7 @@
 # Coaster Industry Visualizing
 >A project to gather the knowledge about the roller coaster & theme park industry.
 
-![Alt text](/app/static/img/coaster-industry-logo-800px.png)
+![Alt text](/app/static/img/coaster-industry-logo-400px.png)
 
 ## Presentation
 The initial purpose of the Coaster Indutry project is to provide a global map referencing the coaster industry. This will include :
