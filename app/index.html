@@ -217,7 +217,7 @@
             'class' : 'constructors-div',
             'color' : '#0f62fe',
             'data' : constructors_geojson,
-        }
+        };
         var parkLayer = 
         {
             'id' : 'parks',
@@ -225,7 +225,7 @@
             'class' : 'parks-div',
             'color' : '#da1e28',
             'data' : parks_geojson
-        } 
+        };
 
         var layers = [constructorLayer, parkLayer]
         var filterGroup = document.getElementById('filter-group');
@@ -253,7 +253,6 @@
                         )
                         .addTo(map);
     
-                    // Init the marker object
                     var el = document.createElement('div');
                     el.className = layer.class + " marker";
                     el.title = marker.name;
@@ -268,7 +267,6 @@
                         'type': 'FeatureCollection',
                         'features': []
                     };
-                    
                     marker.links.forEach(function(link) {
                         var geojson = 
                         {
@@ -286,10 +284,7 @@
                             }
                         }
                         lineSource.features.push(geojson)
-
                     });
-                    
-                    console.debug(lineSource);
                 
                     if (lineSource.features.length > 0) {
 
@@ -324,16 +319,24 @@
                                 map.setLayoutProperty(linkId, 'visibility', 'visible');
                             }
                         });
-                        el.addEventListener("mouseover", function(e) {
-                            map.setPaintProperty(linkId, 'line-width', 6);
-                            map.setPaintProperty(linkId, 'line-opacity', 0.7);
 
-                        });
-                        el.addEventListener("mouseleave", function(e) {
+                        // Adding some paint dynamics over the lines
+                        var lineLeavePaint = function() {
                             map.setPaintProperty(linkId, 'line-width', 4.5);
                             map.setPaintProperty(linkId, 'line-opacity', 0.5);
+                            map.getCanvas().style.cursor = '';
 
-                        });
+                        }
+                        var lineOverPaint = function() {
+                            map.setPaintProperty(linkId, 'line-width', 6.5);
+                            map.setPaintProperty(linkId, 'line-opacity', 0.7);
+                            map.getCanvas().style.cursor = 'pointer';
+
+                        }
+                        el.addEventListener("mouseover", lineOverPaint);
+                        el.addEventListener("mouseleave", lineLeavePaint);
+                        map.on('mouseover', linkId, lineOverPaint);
+                        map.on('mouseleave', linkId, lineLeavePaint);
 
                         // Displaying popups when line is clicked
                         map.on('click', linkId, function(e) {
