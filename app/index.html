@@ -33,7 +33,7 @@
                 <a href="#">Support</a>
             </li>
             <li>
-                <a href="">Help</a>
+                <a href="#">Help</a>
             </li>
         </ul>
         <ul class="account-nav">
@@ -53,6 +53,7 @@
     <!-- Data in JSON format, put into js variables. -->
     <script type="text/javascript" src="data/constructors.js"></script>
     <script type="text/javascript" src="data/parks.js"></script>
+    <script type="text/javascript" src="data/assemblers.js"></script>
 
     <script>
 
@@ -82,8 +83,16 @@
             'color' : '#da1e28',
             'data' : parks_geojson
         };
+        var assemblerLayer = 
+        {
+            'id' : 'assemblers',
+            'name' : 'Attraction Assemblers',
+            'class' : 'assemblers-div',
+            'color' : '#24a148',
+            'data' : assemblers_geojson
+        };
 
-        var layers = [constructorLayer, parkLayer]
+        var layers = [constructorLayer, parkLayer, assemblerLayer]
         var filterGroup = document.getElementById('filter-group');
 
         // Init the map elements when loading the map
@@ -241,7 +250,6 @@
                 // Enable interaction with the checkbox input
                 input.addEventListener('change', function(e) {
                     var markers = document.getElementsByClassName(layer.class);
-                    
                     for (var i = 0, len = markers.length; i < len; i++) {
                         var visibility = markers[i].style.display;
                         if (visibility == 'none') {

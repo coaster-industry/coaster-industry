@@ -68,7 +68,7 @@ li {
     right: 10px;
     z-index: 1;
     border-radius: 2px;
-    width: 170px;
+    width: 230px;
     color: #fff;
     background-color: #000d2c;
     box-shadow: 2px 2px 3px #000;
@@ -107,6 +107,12 @@ h4 {
     border-radius: 50%;
     cursor: pointer;
 }
+.link-popup {
+    border: 2px solid #000;
+}
+
+
+
 .constructors-div {
     background-color: #0f62fe;
 }
@@ -122,6 +128,8 @@ h4 {
 .constructors-div:hover {
     background-color: #0f32fe;
 }
+
+
 .parks-div {
     background-color: #da1e28;
 }
@@ -133,11 +141,24 @@ h4 {
     border: 1px solid #000;
     display: inline-block;
     margin-left: 8px;
-
 }
 .parks-div:hover {
     background-color: #fa1e28;
 }
-.link-popup {
-    border: 2px solid #000;
+
+
+.assemblers-div {
+    background-color: #24a148;
+}
+.assemblers-dot {
+    height: 17px;
+    width: 17px;
+    background-color: #24a148;
+    border-radius: 50%;
+    border: 1px solid #000;
+    display: inline-block;
+    margin-left: 8px;
+}
+.assemblers-div:hover {
+    background-color: #42be65;
 }
