@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block extra_inclusions %}
+<!-- Mapbox library -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
+
+
+{% block content %}
+
+<div class="error-body">
+    <h5>{{ msg }}</h5>
+</div>
+
+{% endblock %}

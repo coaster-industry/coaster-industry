@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block extra_inclusions %}
+<!-- Mapbox library -->
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
+
+
+{% block content %}
+
+    <!-- Displaying the map base -->
+    <div id='map'></div>
+
+    <!-- Buttons to filter the different maker clusters -->
+    <nav id="filter-group" class="filter-group">
+    </nav>
+
+    <!-- Data in JSON format, put into js variables. -->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/constructors.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/parks.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/assemblers.js') }}"></script>
+    
+    <!-- Core JS file to setup the map -->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/map.js') }}"></script>
+
+{% endblock %}

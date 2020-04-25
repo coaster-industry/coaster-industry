@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="body-div">
+
+    <div class="welcome-div">
+        <h1>Welcome on coaster industry !</h1>
+    </div>
+    
+    <div class="full-width-div intro-div">
+        
+        <a href="#">
+            <div class="content-div-link">Presentation</div>
+        </a>
+
+        <div class="two-columns-div">
+            <p class="paragraph-div">
+                Coaster Industry is a project that tries to gather the knowledge of the roller coaster and theme park industry.
+            </p>
+            <img class="image-left" src="{{ url_for('static', filename = 'img/coaster-industry-logo-400px.png') }}" />
+        </div>
+        
+    </div>
+
+    <div class="full-width-div content-div">
+        <a href="#">
+            <div class="content-div-link">Explore</div>
+        </a>
+        <div class="two-columns-div">
+            <p class="paragraph-div">
+                With Coaster Industry you can explore a world map representing the worldwide roller coaster and theme parks industry.
+            </p>
+            <img class="image-right" src="{{ url_for('static', filename = 'img/map-explore-screenshot.png') }}" />
+        </div>
+    </div>
+
+    <div class="full-width-div intro-div">
+        <a href="#">
+            <div class="content-div-link">Learn</div>
+        </a>
+        <div class="two-columns-div">
+            <p class="paragraph-div">
+                Learn more about roller coasters and manufactors. Soon you'll be able to test your knwoledge with our customized quizzs.
+            </p>
+            <img class="image-left" src="{{ url_for('static', filename = 'img/map-learn-screenshot.png') }}" />
+        </div>
+    </div>
+
+    <div class="full-width-div content-div">
+        <a href="#">
+            <div class="content-div-link">Support</div>
+        </a>
+        <div class="two-columns-div">
+            <p class="paragraph-div">
+                Coaster Indutry is a big project. There are so many parks and companies working in the industry.
+                Get involved and help us by sharing a bit of your time and your knowledge !
+            </p>
+            <img class="image-right" src="{{ url_for('static', filename = 'img/map-support-screenshot.png') }}" />
+        </div>
+    </div>
+</div>
+
+{% endblock %}
