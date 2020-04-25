@@ -17,11 +17,32 @@ This interactive map will allow visitors to dig deep into the worldwide theme pa
 
 
 ## Technical informations
-The project is basically a website that will use the Mapbox library to create the map. The framework Flask (Python) is going to run the website.
+The project is basically a website that will use the Mapbox library to create the map. The framework Flask (Python) is used to build the website.
 
 
-## Setup locally
-For now, you just need to download the repo from the master branch and launch the ```app/index.html``` file in your browser.
+## Setup & run locally
+First, you need to clone this repository at master branch or download the sources.
+Second, you have two ways to launch the web server :
+1. Using Python :
+    * it is recommended to work in a Python virtual env, you can use the ```pew``` command to do so.
+    * install the required Python libraries 
+        ```
+        pip install -r requirements
+        ```
+    * run the web server 
+        ```
+        python run.py
+        ```
+    * the application is accessible by default through the ```127.0.0.1:8080``` address
+2. Using Docker :
+    * Build the docker image
+        ```
+        docker build -t coasters .
+        ```
+    * Run the image 
+        ```
+         docker run --publish 8080:8080 -it coasters
+    * The site is accessible through the ```0.0.0.0:8080``` address by default.
 
 
 ## Get involved !
