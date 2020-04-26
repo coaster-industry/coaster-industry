@@ -11,7 +11,8 @@ var parks_geojson =
                 "type": "Point",
                 "coordinates": [7.7219027,48.2660401]
             },
-            "links": []
+            "links": [],
+            "layers": "MACK-link Bolliger-link"
         },
         {
             "category": "park",
@@ -22,7 +23,8 @@ var parks_geojson =
                 "type": "Point",
                 "coordinates": [4.6150698,48.2629668]
             },
-            "links": []
+            "links": [],
+            "layers": "MACK-link"
         },
         {
             "category": "park",
@@ -33,7 +35,8 @@ var parks_geojson =
                 "type": "Point",
                 "coordinates": [6.8816363,50.7987028]
             },
-            "links": []
+            "links": [],
+            "layers": "Bolliger-link"
         },
         {
             "category": "park",
@@ -55,7 +58,8 @@ var parks_geojson =
                 "type": "Point",
                 "coordinates": [2.5711252,49.1341154]
             },
-            "links": []
+            "links": [],
+            "layers": "Bolliger-link"
         }
     ]
 };

@@ -21,7 +21,8 @@ var constructors_geojson =  {
                   "brief": "MACK Rides devlivered almost every big attraction & coasters to Nigloland.",
                   "coordinates": [4.6150698,48.2629668]
               },
-          ]
+          ],
+          "layers": "MACK-link"
       },
       {
           "category": "constructor",
@@ -48,7 +49,8 @@ var constructors_geojson =  {
                   "brief": "2012 B&M delivered the floating airtime machine & inverted coaster Oziris.",
                   "coordinates": [2.5711252,49.1341154]
               }
-          ]
+          ],
+          "layers": "Bolliger-link"
       },
       {
           "category": "constructor",

@@ -172,7 +172,6 @@ h4 {
     height: 450px;
     display: block;
     text-align: center;
-    /*padding: 10px;*/
     margin-left: auto;
     margin-right: auto;
     padding-top: 25px;
@@ -270,4 +269,12 @@ h5 {
     color: #fff;
     opacity: 1.0;
     position: absolute;
+}
+
+
+footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

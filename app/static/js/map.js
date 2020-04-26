@@ -66,12 +66,12 @@ map.on('load', function() {
                 .addTo(map);
 
             var el = document.createElement('div');
-            el.className = layer.class + " marker";
+            el.className = layer.class + " marker" + " " + marker.layers;
             el.title = marker.name;
             new mapboxgl.Marker(el)
                 .setLngLat(marker.geometry.coordinates)
                 .setPopup(popup)
-                .addTo(map);
+                .addTo(map); 
 
             // Create a var containing all links as a geojson lines collection
             var lineSource = 
@@ -102,6 +102,7 @@ map.on('load', function() {
 
                 // the source id is the first word of the marker name, concat with "-link".
                 var linkId = marker.name.split(" ")[0] + "-link";
+                console.debug("linkId:" + linkId);
                 map.addSource(linkId, {
                     'type': 'geojson',
                     'data': lineSource,
@@ -122,13 +123,41 @@ map.on('load', function() {
 
                 console.debug("there are links");
 
+                // Actions when marker is clicked
                 el.addEventListener("click", function(e) {
                     var visibility = map.getLayoutProperty(linkId, 'visibility');
+                    var markers = document.getElementsByClassName("marker");
+                    var classList;
                     if (visibility === 'visible') {
+                        
+                        // hidding the links
                         map.setLayoutProperty(linkId, 'visibility', 'none');
+                        
+                        // showing the markers
+                        for (var i = 0, len = markers.length; i < len; i++) {
+                            classList = markers[i].className;
+                            if (classList.search(linkId) == -1) {
+                                markers[i].style.display = "block";
+                            }
+                        }
+
+                        // enable filter group
+                        enableFilterGroup();
                     }
                     else {
+                        // Showing the links
                         map.setLayoutProperty(linkId, 'visibility', 'visible');
+                        
+                        // Hidding the markers again
+                        for (var i = 0, len = markers.length; i < len; i++) {
+                            classList = markers[i].className;
+                            if (classList.search(linkId) == -1) {
+                                markers[i].style.display = "none";
+                            }
+                        }
+
+                        // disable filter group
+                        disableFilterGroup();
                     }
                 });
 
@@ -152,7 +181,6 @@ map.on('load', function() {
 
                 // Displaying popups when line is clicked
                 map.on('click', linkId, function(e) {
-                    
                     var line = e.features[0];
                     console.debug(line);
                     // we calculate the middle between the points where the popup will be displayed
@@ -211,3 +239,23 @@ map.on('load', function() {
     }); // layer collection foreach
     
 }); // map on load
+
+
+
+function disableFilterGroup() {
+    var inputs = document.getElementsByTagName("input");
+    for (var i = 0, len = inputs.length; i < len; i++) {
+        if (inputs[i].type == "checkbox") {
+            inputs[i].setAttribute("disabled", "");
+        }
+    }
+}
+
+function enableFilterGroup() {
+    var inputs = document.getElementsByTagName("input");
+    for (var i = 0, len = inputs.length; i < len; i++) {
+        if (inputs[i].type == "checkbox") {
+            inputs[i].removeAttribute("disabled", "");
+        }
+    }
+}
