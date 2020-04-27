@@ -50,27 +50,13 @@ map.on('load', function() {
 
         // Creating the markers of this layer
         layer.data.features.forEach(function(marker) {
-            
-            // Creating a popup that will be attached to the marker
-            var popup = new mapboxgl.Popup({
-                closeButton : true,
-                anchor : 'bottom-left',
-                maxWidth : '340px' // default is 240px
-            })
-                .setLngLat(marker.geometry.coordinates)
-                .setHTML(
-                    "<h3>" + marker.name + "</h3>" +
-                    "<p>" + marker.brief + "</p>" +
-                    "<a href=" + marker.uri + ">more... </a>"
-                )
-                .addTo(map);
 
             var el = document.createElement('div');
             el.className = layer.class + " marker" + " " + marker.layers;
             el.title = marker.name;
             new mapboxgl.Marker(el)
                 .setLngLat(marker.geometry.coordinates)
-                .setPopup(popup)
+                /*.setPopup(popup)*/
                 .addTo(map); 
 
             // Create a var containing all links as a geojson lines collection
@@ -97,6 +83,11 @@ map.on('load', function() {
                 }
                 lineSource.features.push(geojson)
             });
+
+            // Showing sidebar with informations on click
+            el.addEventListener("click", function(e) {
+                openSidebar(marker);
+            });
         
             if (lineSource.features.length > 0) {
 
@@ -121,19 +112,22 @@ map.on('load', function() {
 
                 map.setLayoutProperty(linkId, 'visibility', 'none');
 
-                console.debug("there are links");
-
-                // Actions when marker is clicked
+                // Actions when a marker having links is clicked
                 el.addEventListener("click", function(e) {
                     var visibility = map.getLayoutProperty(linkId, 'visibility');
                     var markers = document.getElementsByClassName("marker");
                     var classList;
                     if (visibility === 'visible') {
-                        
                         // hidding the links
                         map.setLayoutProperty(linkId, 'visibility', 'none');
                         
-                        // showing the markers
+                        // closing sidebar
+                        closeSidebar();
+
+                        // Marker border is normal again.
+                        el.style.border = "2px solid black";
+
+                        // bring back the not related markers
                         for (var i = 0, len = markers.length; i < len; i++) {
                             classList = markers[i].className;
                             if (classList.search(linkId) == -1) {
@@ -148,7 +142,10 @@ map.on('load', function() {
                         // Showing the links
                         map.setLayoutProperty(linkId, 'visibility', 'visible');
                         
-                        // Hidding the markers again
+                        // growing border of the marker
+                        el.style.border = "8px solid #393939";
+
+                        // Hidding the not related markers
                         for (var i = 0, len = markers.length; i < len; i++) {
                             classList = markers[i].className;
                             if (classList.search(linkId) == -1) {
@@ -258,4 +255,28 @@ function enableFilterGroup() {
             inputs[i].removeAttribute("disabled", "");
         }
     }
+}
+
+
+/* Closing & clearing the sidebar that shows marker informations */
+function closeSidebar(){
+    var el = document.getElementById("marker-sidebar");
+    var content = document.getElementById("marker-sidebar-content");
+    content.innerHTML = "";
+    el.style.display = "none";
+}
+
+/* Showing & updating the sidebar that show marker informations */
+function openSidebar(marker) {
+    console.debug("marker : " + marker);
+    var el = document.getElementById("marker-sidebar");
+    var content = document.getElementById("marker-sidebar-content");
+    content.innerHTML = 
+        "<h3>" + marker.name + "</h3>" +
+        "<img class=\"marker-sidebar-logo\" src=" + marker.logo_uri + " />" +
+        "<p>" + marker.brief + "</p>" +
+        "<a href=" + marker.website + " target=\"_blank\">website</a>" +
+        "<a href=" + marker.uri + ">more... </a>"
+    ;
+    el.style.display = "block";
 }

@@ -16,6 +16,14 @@
     <nav id="filter-group" class="filter-group">
     </nav>
 
+    <!-- Side bar to display -->
+    <div id="marker-sidebar">
+        <button class="btn btn-top-right" onclick="closeSidebar()">X</button>
+        <div id="marker-sidebar-content">
+            
+        </div>
+    </div>
+
     <!-- Data in JSON format, put into js variables. -->
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/constructors.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/parks.js') }}"></script>

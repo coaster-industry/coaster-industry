@@ -12,7 +12,9 @@ var parks_geojson =
                 "coordinates": [7.7219027,48.2660401]
             },
             "links": [],
-            "layers": "MACK-link Bolliger-link"
+            "layers": "MACK-link Bolliger-link",
+            "logo_uri": "https://upload.wikimedia.org/wikipedia/fr/a/a8/EuropaPark.svg",
+            "website": "https://www.europapark.de/"
         },
         {
             "category": "park",
@@ -24,7 +26,9 @@ var parks_geojson =
                 "coordinates": [4.6150698,48.2629668]
             },
             "links": [],
-            "layers": "MACK-link"
+            "layers": "MACK-link",
+            "logo_uri": "https://upload.wikimedia.org/wikipedia/fr/1/12/Logo_nigloland.png",
+            "website": "https://www.nigloland.fr/"
         },
         {
             "category": "park",
@@ -36,7 +40,9 @@ var parks_geojson =
                 "coordinates": [6.8816363,50.7987028]
             },
             "links": [],
-            "layers": "Bolliger-link"
+            "layers": "Bolliger-link",
+            "logo_uri": "https://upload.wikimedia.org/wikipedia/fr/6/6a/Phantasialand_logo.gif",
+            "website": "https://www.phantasialand.de/"
         },
         {
             "category": "park",
@@ -47,7 +53,9 @@ var parks_geojson =
                 "type": "Point",
                 "coordinates": [8.2952151,49.3186504]
             },
-            "links": []
+            "links": [],
+            "logo_uri": "https://upload.wikimedia.org/wikipedia/fr/9/98/Logo_Holiday_Park_Plopsa.jpg",
+            "website": "https://www.holidaypark.de/"
         },
         {
             "category": "park",
@@ -59,7 +67,9 @@ var parks_geojson =
                 "coordinates": [2.5711252,49.1341154]
             },
             "links": [],
-            "layers": "Bolliger-link"
+            "layers": "Bolliger-link",
+            "logo_uri": "https://upload.wikimedia.org/wikipedia/fr/c/c0/Logo_Parc_Ast%C3%A9rix_2020.png",
+            "website": "https://www.parcasterix.fr/"
         }
     ]
 };
