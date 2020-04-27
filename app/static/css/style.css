@@ -124,20 +124,15 @@ footer {
     .website-nav .nav-logo {
         display: none;
     }
-    .website-nav.responsive {
-        position: absolute;
-    }
     .website-nav.responsive .main-nav a {
         float: none;
         display: block;
         text-align: left;
-        position: relative;
     }
     .website-nav.responsive .account-nav a {
         float: none;
         display: block;
         text-align: left;
-        position: relative;
     }
     .account-nav {
         margin-right: 0px;
