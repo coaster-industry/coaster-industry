@@ -259,7 +259,7 @@ function enableFilterGroup() {
 
 
 /* Closing & clearing the sidebar that shows marker informations */
-function closeSidebar(){
+function closeSidebar() {
     var el = document.getElementById("marker-sidebar");
     var content = document.getElementById("marker-sidebar-content");
     content.innerHTML = "";

@@ -22,7 +22,9 @@ var constructors_geojson =  {
                   "coordinates": [4.6150698,48.2629668]
               },
           ],
-          "layers": "MACK-link"
+          "layers": "MACK-link",
+          "logo_uri": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Mack_Rides_Logo.svg",
+          "website": "https://mack-rides.com/"
       },
       {
           "category": "constructor",
@@ -50,7 +52,9 @@ var constructors_geojson =  {
                   "coordinates": [2.5711252,49.1341154]
               }
           ],
-          "layers": "Bolliger-link"
+          "layers": "Bolliger-link",
+          "logo_uri": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Bolliger_%26_Mabillard_wordmark.svg",
+          "website": "https://www.bolliger-mabillard.com/"
       },
       {
           "category": "constructor",
@@ -61,7 +65,9 @@ var constructors_geojson =  {
               "type": "Point",
               "coordinates" : [10.449584,48.3102941]
           },
-          "links": []
+          "links": [],
+          "logo_uri": "https://upload.wikimedia.org/wikipedia/fr/5/59/Gerstlauer-rides_logo.gif",
+          "website": "https://www.gerstlauer-rides.de/"
       },
       {
           "category": "constructor",
@@ -72,7 +78,9 @@ var constructors_geojson =  {
               "type": "Point",
               "coordinates" : [9.5089202,47.1594148]
           },
-          "links": []
+          "links": [],
+          "logo_uri": "https://upload.wikimedia.org/wikipedia/en/7/76/Intamin_Amusement_Rides_logo.svg",
+          "website": "https://www.intaminworldwide.com/"
       }
   ]
 };
