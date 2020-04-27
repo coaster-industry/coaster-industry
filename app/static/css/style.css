@@ -132,32 +132,22 @@ h4 {
     font-weight: 600;
     font-size: 18px;
 }
-.constructors-dot {
+.dot {
     height: 17px;
     width: 17px;
-    background-color: #0f32fe;
     border-radius: 50%;
     border: 1px solid #000;
     display: inline-block;
     margin-left: 8px;
+}
+.constructors-dot {
+    background-color: #0f32fe;
 }
 .parks-dot {
-    height: 17px;
-    width: 17px;
     background-color: #da1e28;
-    border-radius: 50%;
-    border: 1px solid #000;
-    display: inline-block;
-    margin-left: 8px;
 }
 .assemblers-dot {
-    height: 17px;
-    width: 17px;
     background-color: #24a148;
-    border-radius: 50%;
-    border: 1px solid #000;
-    display: inline-block;
-    margin-left: 8px;
 }
 
 

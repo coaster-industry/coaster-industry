@@ -213,7 +213,7 @@ map.on('load', function() {
         li.appendChild(label);
 
         var dot = document.createElement('span');
-        dot.className = layer.id + "-dot";
+        dot.className = layer.id + "-dot" + " dot";
         li.appendChild(dot)
 
         filterGroup.appendChild(li);
