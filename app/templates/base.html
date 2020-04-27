@@ -6,7 +6,9 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link rel="icon" type="image/png" href="static/img/coaster_favicon.png" sizes="32x32">
     <link href='static/css/style.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script type="text/javascript" src="static/js/site.js"></script>
     {% block extra_inclusions %}
     {% endblock %}
 
@@ -16,31 +18,18 @@
     <!-- Website navigation bar -->
     <nav id="website-nav" class="website-nav">
         <img class="nav-logo" src="static/img/coaster-industry-logo-800px.png" />
-        <ul>
-            <li>
-                <a href="{{ url_for("home") }}">Home</a>
-            </li>
-            <li>
-                <a href="{{ url_for("map") }}">Explore</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Support</a>
-            </li>
-            <li>
-                <a href="#">Help</a>
-            </li>
-        </ul>
-        <ul class="account-nav">
-            <li>
-                <a href="#">Login</a>
-            </li>
-            <li>
-                <a href="#">Sign up</a>
-            </li>
-        </ul>
+        <div class="main-nav">
+            <a href="{{ url_for("home") }}">Home</a>
+            <a href="{{ url_for("map") }}">Explore</a>
+            <a href="#">About</a>
+            <a href="#">Support</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="account-nav">
+            <a href="#">Login</a>
+            <a href="#">Sign up</a>
+        </div>
+        <a href="javascript:void(0);" class="nav-icon" onclick="showNav()"><i class="fa fa-bars"></i></a>
     </nav>
 
     {% block content %}
